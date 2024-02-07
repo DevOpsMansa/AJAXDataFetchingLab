@@ -11,15 +11,3 @@ By the end of this lesson, learners will be able to:
 
 # AJAXDataFetchingLab
 
-
-echo "# AJAXDataFetchingLab" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/DevOpsMansa/AJAXDataFetchingLab.git
-git push -u origin main
-
-git remote add origin https://github.com/DevOpsMansa/AJAXDataFetchingLab.git
-git branch -M main
-git push -u origin main
