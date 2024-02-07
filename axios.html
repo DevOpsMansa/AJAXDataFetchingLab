@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Fetching with Axios</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<label>
+    Input:
+    <input type="text" id="myInput"  />
+</label>
+
+<button id="myBtn" type="button">Test it Out</button>
+
+<script>
+document
+    .getElementById("myBtn")
+    .addEventListener("click", testRequest);
+
+async function testRequest() {
+	let inputVal = document.getElementById("myInput").value;
+    let requestBody = { data: inputVal };
+
+    const response = await axios.post('https://jsonplaceholder.typicode.com/todos', 
+        requestBody, { 
+        headers: { 
+            'Content-Type': 'application/json; charset=UTF-8' 
+        }
+    });
+
+    logResponse(response);
+}
+
+async function logResponse(response) {
+    console.log(response.data);
+}
+</script>
+</body>
+</html>

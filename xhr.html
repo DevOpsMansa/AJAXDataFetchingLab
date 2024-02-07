@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Fetching with XHR</title>
+  </head>
+  <body>
+    <label>
+      Input:
+      <input type="text" id="myInput" />
+    </label>
+
+    <button id="myBtn" type="button">Test it Out</button>
+    
+    <script>
+      let request;
+
+      document
+        .getElementById("myBtn")
+        .addEventListener("click", testRequest);
+
+      function testRequest() {
+        request = new XMLHttpRequest();
+
+        if (!request) {
+          alert("Failed to create an XMLHttpRequest Object.");
+          return false;
+        }
+
+        request.onreadystatechange = alertResponse;
+        // HTML Example
+        // request.open("GET", "test.html");
+        // request.send();
+
+        // XML Example
+        // request.open("GET", "test.xml");
+        // request.send();
+
+        request.open("POST", "https://jsonplaceholder.typicode.com/todos");
+
+        request.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+
+        let inputVal = document.getElementById("myInput").value;
+        let encodedVal = encodeURIComponent(inputVal);
+        request.send(`data=${encodedVal}`);
+      }
+
+      function alertResponse() {
+        if (request.readyState === XMLHttpRequest.DONE) {
+          if (request.status === 200 || request.status == 201) {
+            // HTML Example and posting data example
+            alert(request.responseText);
+
+            // XML Example
+            // const xmlDoc = request.responseXML;
+            // const doc_root = xmlDoc.querySelector("root");
+            // let data = doc_root.firstChild.data;
+
+            alert(data);
+          } else {
+            alert("The request returned a status other than 200 OK: " + request.status);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
